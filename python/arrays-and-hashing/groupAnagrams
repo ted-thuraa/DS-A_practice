@@ -1,0 +1,16 @@
+from typing import List
+from collections import defaultdict
+
+#time complexity O(m*n)
+
+class solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        ans = defaultdict(list) #provides a default value for the key that does not exists.
+
+        for word in strs:
+            count = [0] * 26 #a to z
+            for char in word:
+                #get the unicode of char and frequenct
+                count[ord(char) - ord("a")] += 1
+            ans[tuple(count)].append(word) #tuple because list do not have key value pairs
+        return ans.values()
